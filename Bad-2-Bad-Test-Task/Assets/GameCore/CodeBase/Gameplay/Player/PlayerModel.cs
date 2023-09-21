@@ -1,7 +1,7 @@
 using GameCore.CodeBase.Gameplay.Player.Data;
 using UnityEngine;
 
-namespace GameCore.CodeBase.Gameplay.Player.Model
+namespace GameCore.CodeBase.Gameplay.Player
 {
     public class PlayerModel
     {
@@ -13,6 +13,8 @@ namespace GameCore.CodeBase.Gameplay.Player.Model
             _instance = instance;
             _movementData = movementData;
         }
+
+        public GameObject GameObject => _instance.gameObject;
 
         public void MovePosition(Vector2 inputVector)
         {

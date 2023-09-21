@@ -1,6 +1,6 @@
 using System;
 
-namespace GameCore.CodeBase.Gameplay.Player.Model
+namespace GameCore.CodeBase.Gameplay.Player.Data
 {
     [Serializable]
     public class PlayerMovementStaticData
