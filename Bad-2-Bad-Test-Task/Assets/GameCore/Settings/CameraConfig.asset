@@ -15,4 +15,4 @@ MonoBehaviour:
   CameraPrefab: {fileID: 6920779979611552592, guid: 4d8402c938e3be342b6b61047d89d694, type: 3}
   MovementData:
     Height: -10
-    Smoothing: 3
+    Smoothing: 4.5

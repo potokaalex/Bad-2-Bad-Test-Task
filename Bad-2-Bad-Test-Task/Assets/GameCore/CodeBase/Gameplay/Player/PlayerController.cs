@@ -10,8 +10,8 @@ namespace GameCore.CodeBase.Gameplay.Player
 
         public GameObject GameObject => _model.GameObject;
 
-        public void Move(Vector2 inputVector) => _model.MovePosition(inputVector);
+        public void Move(Vector2 direction) => _model.MovePosition(direction);
 
-        public void Rotate(Vector2 inputVector) => _model.MoveRotation(inputVector);
+        public void Rotate(Vector2 direction) => _model.MoveRotation(direction);
     }
 }

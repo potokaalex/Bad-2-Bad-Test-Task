@@ -17,4 +17,4 @@ MonoBehaviour:
   - {fileID: 1719471246396463970, guid: 4c4c5eb40121d4e489c7db177de43425, type: 3}
   - {fileID: 1871656499185240653, guid: d365918bec21d5e43aed779fd203aa46, type: 3}
   MovementData:
-    PositionVelocity: 8
+    PositionVelocity: 7
