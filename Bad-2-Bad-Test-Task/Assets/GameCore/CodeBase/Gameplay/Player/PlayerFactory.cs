@@ -5,15 +5,15 @@ namespace GameCore.CodeBase.Gameplay.Player
 {
     public class PlayerFactory
     {
-        private readonly PlayerStaticData _staticData;
         private const string PlayerRootName = "PlayerRoot";
+        private readonly PlayerStaticData _staticData;
         private Transform _playerRoot;
 
         public PlayerFactory(PlayerStaticData staticData) => _staticData = staticData;
 
         public PlayerController CurrentPlayer { get; private set; }
 
-        public void CreatePlayer(ISpawnPoint spawnPoint)
+        public void CreatePlayer(SpawnPoint spawnPoint)
         {
             var root = new GameObject(PlayerRootName).transform;
             var instance = Object.Instantiate(_staticData.ControllerPrefab, spawnPoint.Value, Quaternion.identity);

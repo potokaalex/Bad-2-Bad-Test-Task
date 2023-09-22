@@ -1,3 +1,5 @@
+using GameCore.CodeBase.Gameplay.Enemy.Target;
+
 namespace GameCore.CodeBase.Gameplay.Enemy
 {
     public class EnemyController

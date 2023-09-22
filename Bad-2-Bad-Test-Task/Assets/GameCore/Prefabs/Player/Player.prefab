@@ -103,7 +103,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2282603104151895869}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -923,6 +923,7 @@ GameObject:
   - component: {fileID: 6887627181097327317}
   - component: {fileID: 6887627181097327316}
   - component: {fileID: 1620926954494812739}
+  - component: {fileID: 84813915104429194}
   - component: {fileID: -5232545315209852384}
   - component: {fileID: 2291644804975515504}
   - component: {fileID: 4747680096285142610}
@@ -963,8 +964,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.034466267, y: -0.10339713}
-  m_Size: {x: 0.6190634, y: 2.1217036}
+  m_Offset: {x: 0.11036372, y: -0.10339713}
+  m_Size: {x: 0.7708583, y: 2.1217036}
   m_Direction: 0
 --- !u!195 &1620926954494812739
 NavMeshAgent:
@@ -975,7 +976,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6887627181097327318}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -984,10 +985,31 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!50 &84813915104429194
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6887627181097327318}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!114 &-5232545315209852384
 MonoBehaviour:
   m_ObjectHideFlags: 0

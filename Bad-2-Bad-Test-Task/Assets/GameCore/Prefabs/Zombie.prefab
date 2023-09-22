@@ -689,6 +689,9 @@ GameObject:
   m_Component:
   - component: {fileID: 457318593584316755}
   - component: {fileID: 457318593584316754}
+  - component: {fileID: 3218392716115324873}
+  - component: {fileID: 457387263934676235}
+  - component: {fileID: 9209421106098873429}
   - component: {fileID: 2905984367038529967}
   m_Layer: 0
   m_Name: Zombie
@@ -730,6 +733,62 @@ CapsuleCollider2D:
   m_Offset: {x: 0.034325093, y: -0.17162538}
   m_Size: {x: 0.5686502, y: 2.1670532}
   m_Direction: 0
+--- !u!195 &3218392716115324873
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457318593584316752}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.1
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!50 &457387263934676235
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457318593584316752}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &9209421106098873429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457318593584316752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f184950a80480b956daea1aebf82d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agent: {fileID: 3218392716115324873}
 --- !u!114 &2905984367038529967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -742,8 +801,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4fc311a80241258e58c310f270f37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetHandler: {fileID: 0}
+  TargetHandler: {fileID: 931918618252301685}
   Input: {fileID: 0}
+  Agent: {fileID: 3218392716115324873}
 --- !u!1 &930493751696245955
 GameObject:
   m_ObjectHideFlags: 0

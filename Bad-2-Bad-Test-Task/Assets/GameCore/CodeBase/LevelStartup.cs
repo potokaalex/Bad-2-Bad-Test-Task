@@ -1,6 +1,8 @@
 using GameCore.CodeBase.Gameplay;
 using GameCore.CodeBase.Gameplay.Camera;
 using GameCore.CodeBase.Gameplay.Camera.Data;
+using GameCore.CodeBase.Gameplay.Enemy;
+using GameCore.CodeBase.Gameplay.Enemy.Data;
 using GameCore.CodeBase.Gameplay.Player;
 using GameCore.CodeBase.Gameplay.Player.Data;
 using UnityEngine;
@@ -12,6 +14,8 @@ namespace GameCore.CodeBase
         public PlayerStaticData PlayerStaticData;
         public SpawnPoint PlayerSpawnPoint;
         public CameraStaticData CameraStaticData;
+        public EnemyStaticData EnemyStaticData;
+        public SpawnPoint[] EnemySpawnPoints;
 
         private void Start()
         {
@@ -19,7 +23,10 @@ namespace GameCore.CodeBase
             playerFactory.CreatePlayer(PlayerSpawnPoint);
 
             var cameraFactory = new CameraFactory(CameraStaticData);
-            cameraFactory.Create(playerFactory.CurrentPlayer);
+            cameraFactory.Create(PlayerSpawnPoint, playerFactory.CurrentPlayer);
+
+            var enemyFactory = new EnemyFactory(EnemyStaticData);
+            enemyFactory.Create(EnemySpawnPoints);
         }
     }
 }

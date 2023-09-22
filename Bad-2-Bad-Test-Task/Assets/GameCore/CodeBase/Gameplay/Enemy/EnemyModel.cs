@@ -1,14 +1,14 @@
+using GameCore.CodeBase.Gameplay.Enemy.Data;
+using GameCore.CodeBase.Gameplay.Enemy.Target;
+
 namespace GameCore.CodeBase.Gameplay.Enemy
 {
     public class EnemyModel
     {
-        public EnemyModel(EnemyPrefabData instance)
-        {
-        }
+        private readonly EnemyPrefabData _instance;
 
-        public void Follow(IEnemyTarget target)
-        {
-            //target.Position
-        }
+        public EnemyModel(EnemyPrefabData instance) => _instance = instance;
+
+        public void Follow(IEnemyTarget target) => _instance.Agent.SetDestination(target.Position);
     }
 }
