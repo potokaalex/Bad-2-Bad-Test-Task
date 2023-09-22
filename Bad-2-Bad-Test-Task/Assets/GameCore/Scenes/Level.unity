@@ -17627,6 +17627,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 801779470}
+  - component: {fileID: 801779473}
+  - component: {fileID: 801779472}
   - component: {fileID: 801779471}
   m_Layer: 0
   m_Name: Startup
@@ -17662,10 +17664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1b725b8c6f4561a66da3b90d060fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerStaticData: {fileID: 11400000, guid: 4b8ea6b09759a10498196cdc68ffd554, type: 2}
   PlayerSpawnPoint: {fileID: 1196626432}
-  CameraStaticData: {fileID: 11400000, guid: 52456d877840616428fc712ccff035d6, type: 2}
-  EnemyStaticData: {fileID: 11400000, guid: 50663a32abd847a45ab706df8ea2c891, type: 2}
   EnemySpawnPoints:
   - {fileID: 424009697}
   - {fileID: 1292489114}
@@ -17674,8 +17673,54 @@ MonoBehaviour:
   - {fileID: 321762361}
   - {fileID: 1300180722}
   - {fileID: 1848068075}
-  ItemsStaticData: {fileID: 11400000, guid: 7e62744453cac8a4eb410a632d0b1250, type: 2}
-  ItemSpawner: {fileID: 1146457599}
+--- !u!114 &801779472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801779469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc20c8b6412c418294dd26f40ef1572e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerStaticData: {fileID: 11400000, guid: 4b8ea6b09759a10498196cdc68ffd554, type: 2}
+  _cameraStaticData: {fileID: 11400000, guid: 52456d877840616428fc712ccff035d6, type: 2}
+  _enemyStaticData: {fileID: 11400000, guid: 50663a32abd847a45ab706df8ea2c891, type: 2}
+  _itemsStaticData: {fileID: 11400000, guid: 7e62744453cac8a4eb410a632d0b1250, type: 2}
+--- !u!114 &801779473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801779469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 801779472}
+  _installerPrefabs: []
+  _autoRun: 1
+  OnPreInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPreResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  _parentNewObjectsUnderSceneContext: 0
+  _contractNames: []
+  _parentContractNames: []
 --- !u!1 &863721420
 GameObject:
   m_ObjectHideFlags: 0

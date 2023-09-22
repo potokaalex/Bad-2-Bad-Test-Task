@@ -13,7 +13,7 @@ namespace GameCore.CodeBase.Gameplay.Player
 
         public PlayerController CurrentPlayer { get; private set; }
 
-        public void CreatePlayer(SpawnPoint spawnPoint)
+        public void CreatePlayer(SpawnPoint.SpawnPoint spawnPoint)
         {
             var root = new GameObject(PlayerRootName).transform;
             var instance = Object.Instantiate(_staticData.ControllerPrefab, spawnPoint.Value, Quaternion.identity);

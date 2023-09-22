@@ -1,4 +1,5 @@
 using GameCore.CodeBase.Gameplay.Enemy.Data;
+using GameCore.CodeBase.Gameplay.SpawnPoint;
 using UnityEngine;
 
 namespace GameCore.CodeBase.Gameplay.Enemy
@@ -17,7 +18,7 @@ namespace GameCore.CodeBase.Gameplay.Enemy
             _enemies = new EnemyController[staticData.MaxEnemyCount];
         }
 
-        public void Create(SpawnPoint[] spawnPoints)
+        public void Create(SpawnPoint.SpawnPoint[] spawnPoints)
         {
             for (var i = 0; i < _enemies.Length; i++)
                 Create(spawnPoints[i]);
