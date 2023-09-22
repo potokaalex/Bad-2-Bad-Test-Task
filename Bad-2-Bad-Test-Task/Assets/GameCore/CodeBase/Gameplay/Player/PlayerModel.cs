@@ -18,7 +18,11 @@ namespace GameCore.CodeBase.Gameplay.Player
 
         public void MovePosition(Vector2 direction)
         {
-            var offset = direction.normalized * (Time.fixedDeltaTime * _movementData.PositionVelocity);
+            var velocity = Time.fixedDeltaTime * _movementData.PositionVelocity;
+            var navMeshBugOffset = Vector2.right * 0.0001f;
+            //A slight x offset to avoid BUG when strictly move along the y axis.
+
+            var offset = direction.normalized * velocity + navMeshBugOffset;
 
             _instance.transform.position += new Vector3(offset.x, offset.y);
         }
