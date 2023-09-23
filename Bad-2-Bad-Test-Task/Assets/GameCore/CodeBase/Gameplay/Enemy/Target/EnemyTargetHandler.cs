@@ -11,7 +11,7 @@ namespace GameCore.CodeBase.Gameplay.Enemy.Target
 
         private void OnTriggerStay2D(Collider2D other)
         {
-            if (other.TryGetComponent<IEnemyTarget>(out var target))
+            if (other.TryGetComponent<EnemyTarget>(out var target))
                 _controller.Follow(target);
         }
     }

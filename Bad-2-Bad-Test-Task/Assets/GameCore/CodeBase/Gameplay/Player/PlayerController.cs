@@ -1,3 +1,5 @@
+using GameCore.CodeBase.Gameplay.Inventory;
+using GameCore.CodeBase.Gameplay.Item.Data;
 using UnityEngine;
 
 namespace GameCore.CodeBase.Gameplay.Player
@@ -6,7 +8,13 @@ namespace GameCore.CodeBase.Gameplay.Player
     {
         private readonly PlayerModel _model;
 
-        public PlayerController(PlayerModel model) => _model = model;
+        public PlayerController(PlayerModel model, InventoryController inventoryController)
+        {
+            _model = model;
+            Inventory = inventoryController;
+        }
+
+        public InventoryController Inventory { get; }
 
         public GameObject GameObject => _model.GameObject;
 

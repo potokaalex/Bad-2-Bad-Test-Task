@@ -8,6 +8,6 @@ namespace GameCore.CodeBase.Gameplay.Enemy
 
         public EnemyController(EnemyModel model) => _model = model;
 
-        public void Follow(IEnemyTarget target) => _model.Follow(target);
+        public void Follow(EnemyTarget target) => _model.Follow(target);
     }
 }

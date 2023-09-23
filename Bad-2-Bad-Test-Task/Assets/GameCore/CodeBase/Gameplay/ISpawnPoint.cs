@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameCore.CodeBase.Gameplay.SpawnPoint
+namespace GameCore.CodeBase.Gameplay
 {
     public interface ISpawnPoint
     {

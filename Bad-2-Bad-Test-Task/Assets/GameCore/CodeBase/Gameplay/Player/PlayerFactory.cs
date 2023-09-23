@@ -1,5 +1,7 @@
+using GameCore.CodeBase.Gameplay.Inventory;
 using GameCore.CodeBase.Gameplay.Player.Data;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace GameCore.CodeBase.Gameplay.Player
 {
@@ -9,34 +11,34 @@ namespace GameCore.CodeBase.Gameplay.Player
         private readonly PlayerStaticData _staticData;
         private Transform _playerRoot;
 
-        public PlayerFactory(PlayerStaticData staticData) => _staticData = staticData;
+        public PlayerFactory(PlayerStaticData staticData)
+        {
+            _staticData = staticData;
+            _playerRoot = new GameObject(PlayerRootName).transform;
+        }
 
         public PlayerController CurrentPlayer { get; private set; }
 
-        public void CreatePlayer(SpawnPoint.SpawnPoint spawnPoint)
+        public void CreatePlayer(SpawnPoint spawnPoint)
         {
-            var root = new GameObject(PlayerRootName).transform;
             var instance = Object.Instantiate(_staticData.ControllerPrefab, spawnPoint.Value, Quaternion.identity);
+            var outerCanvas = Object.Instantiate(_staticData.OuterCanvasPrefab, _playerRoot);
             var model = new PlayerModel(instance, _staticData.MovementData);
-            var controller = new PlayerController(model);
+            var inventoryModel = new InventoryModel(_staticData.InventorySize);
+            var inventory = new InventoryController(inventoryModel, outerCanvas.InventoryUI);
+            var controller = new PlayerController(model, inventory);
 
-            instance.transform.SetParent(root);
-            foreach (var prefab in _staticData.UIPrefabs)
-                CreateUI(prefab, controller, root);
+            instance.ItemCollector.Construct(controller);
+            outerCanvas.InventoryUI.Construct(controller);
+
+            foreach (var device in outerCanvas.InputDevices)
+            {
+                device.Construct(controller);
+            }
+
+            instance.transform.SetParent(_playerRoot);
 
             CurrentPlayer = controller;
-            _playerRoot = root;
-        }
-
-        private void CreateUI(PlayerUIPrefabData prefab, PlayerController controller, Transform root)
-        {
-            var instance = Object.Instantiate(prefab, root);
-
-            foreach (var monoUiElement in instance.UIElements)
-            {
-                var uiElement = monoUiElement as IPlayerUIElement;
-                uiElement.Construct(controller);
-            }
         }
     }
 }

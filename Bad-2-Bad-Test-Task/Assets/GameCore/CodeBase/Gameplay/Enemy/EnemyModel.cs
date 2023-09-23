@@ -9,6 +9,6 @@ namespace GameCore.CodeBase.Gameplay.Enemy
 
         public EnemyModel(EnemyPrefabData instance) => _instance = instance;
 
-        public void Follow(IEnemyTarget target) => _instance.Agent.SetDestination(target.Position);
+        public void Follow(EnemyTarget target) => _instance.Agent.SetDestination(target.Position);
     }
 }

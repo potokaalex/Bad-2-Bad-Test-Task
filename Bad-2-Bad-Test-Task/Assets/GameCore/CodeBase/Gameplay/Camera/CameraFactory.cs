@@ -1,6 +1,5 @@
 using GameCore.CodeBase.Gameplay.Camera.Data;
 using GameCore.CodeBase.Gameplay.Player;
-using GameCore.CodeBase.Gameplay.SpawnPoint;
 using UnityEngine;
 
 namespace GameCore.CodeBase.Gameplay.Camera

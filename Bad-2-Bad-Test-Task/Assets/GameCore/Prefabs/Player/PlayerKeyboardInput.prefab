@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3724809602947339632}
   - component: {fileID: 5714727552275797695}
-  - component: {fileID: 1871656499185240653}
   m_Layer: 0
   m_Name: PlayerKeyboardInput
   m_TagString: Untagged
@@ -45,17 +44,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53222c20f18a4e60bf7605de2c5b857e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1871656499185240653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1292867939749462264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a52a1739ec24c5bb8160b7738bd411d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UIElements:
-  - {fileID: 5714727552275797695}

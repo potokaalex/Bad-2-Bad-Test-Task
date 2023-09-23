@@ -6,7 +6,8 @@ namespace GameCore.CodeBase.Gameplay.Player.Data
     public class PlayerStaticData : ScriptableObject
     {
         public PlayerControllerPrefabData ControllerPrefab;
-        public PlayerUIPrefabData[] UIPrefabs;
+        public PlayerOuterCanvasPrefabData OuterCanvasPrefab;
         public PlayerMovementStaticData MovementData;
+        public int InventorySize;
     }
 }

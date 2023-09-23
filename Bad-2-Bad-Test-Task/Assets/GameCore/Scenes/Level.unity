@@ -17613,6 +17613,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 6920779979611552685, guid: 4d8402c938e3be342b6b61047d89d694, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6920779979611552684, guid: 4d8402c938e3be342b6b61047d89d694, type: 3}
     - {fileID: 7561480139892643982, guid: 4d8402c938e3be342b6b61047d89d694, type: 3}
@@ -17902,6 +17906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 1146457600}
   _type: 0
+  _count: 39
   _spawnRateSeconds: 60
 --- !u!114 &1146457600
 MonoBehaviour:

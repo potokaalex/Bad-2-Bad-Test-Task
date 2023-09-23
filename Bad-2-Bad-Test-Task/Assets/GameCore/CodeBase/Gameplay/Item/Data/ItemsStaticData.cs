@@ -7,6 +7,7 @@ namespace GameCore.CodeBase.Gameplay.Item.Data
     {
         public const int Count = 3;
 
+        public ItemPrefabData Prefab;
         public ItemStaticData Ammunition;
         public ItemStaticData ZombieHead;
         public ItemStaticData ZombieArm;

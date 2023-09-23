@@ -2,7 +2,7 @@
 
 namespace GameCore.CodeBase.Gameplay.Player.Input
 {
-    public abstract class PlayerInputDevice : MonoBehaviour, IPlayerUIElement
+    public abstract class PlayerInputDevice : MonoBehaviour
     {
         private protected readonly Vector2 InputVectorDefaultValue = default;
         private PlayerController _controller;

@@ -6,8 +6,9 @@ namespace GameCore.CodeBase.Gameplay.Item
 {
     public class ItemSpawner : MonoBehaviour
     {
-        [SerializeField] private SpawnPoint.SpawnPoint _spawnPoint;
+        [SerializeField] private SpawnPoint _spawnPoint;
         [SerializeField] private ItemsType _type;
+        [SerializeField] private int _count;
         [SerializeField] private float _spawnRateSeconds;
 
         private ItemFactory _itemFactory;
@@ -18,13 +19,21 @@ namespace GameCore.CodeBase.Gameplay.Item
 
         private void FixedUpdate()
         {
-            if (_timeToSpawn <= 0)
+            if (_timeToSpawn > 0)
             {
-                _itemFactory.Create(_spawnPoint, _type);
-                _timeToSpawn = _spawnRateSeconds;
+                _timeToSpawn -= Time.fixedDeltaTime;
+                return;
             }
 
-            _timeToSpawn -= Time.fixedDeltaTime;
+            Spawn();
+            _timeToSpawn = _spawnRateSeconds;
+        }
+
+        private void Spawn()
+        {
+            var data = _itemFactory.CreateData(_type, _count);
+
+            _itemFactory.CreateGameObject(_spawnPoint, data);
         }
     }
 }
