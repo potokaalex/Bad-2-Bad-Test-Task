@@ -32,8 +32,7 @@ namespace GameCore.CodeBase.Gameplay.Item
         private void Spawn()
         {
             var data = _itemFactory.CreateData(_type, _count);
-
-            _itemFactory.CreateGameObject(_spawnPoint, data);
+            _itemFactory.CreateGameObject(_spawnPoint.Value, data);
         }
     }
 }

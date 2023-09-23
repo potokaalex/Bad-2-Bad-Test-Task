@@ -18,4 +18,7 @@ MonoBehaviour:
     PositionVelocity: 7
   WeaponData:
     DamageValue: -1
+  HealthData:
+    MaxCount: 3
+    InitialCount: 3
   InventorySize: 5

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using GameCore.CodeBase.Gameplay.Enemy;
+using GameCore.CodeBase.Gameplay.Health.Data;
 using GameCore.CodeBase.Gameplay.Player.Data;
 using UnityEngine;
 
@@ -9,18 +10,21 @@ namespace GameCore.CodeBase.Gameplay.Player
     {
         private readonly PlayerObjectPrefabData _instance;
         private readonly PlayerMovementStaticData _movementData;
-        private readonly PlayerWeaponStaticData _weaponData;
+        private readonly WeaponStaticData _weaponData;
         private readonly List<EnemyController> _selectedEnemies = new();
 
         public PlayerModel(PlayerObjectPrefabData instance, PlayerMovementStaticData movementData,
-            PlayerWeaponStaticData weaponData)
+            WeaponStaticData weaponData,HealthData health)
         {
             _instance = instance;
             _movementData = movementData;
             _weaponData = weaponData;
+            Health = health;
         }
 
         public GameObject GameObject => _instance.gameObject;
+
+        public HealthData Health { get; }
 
         public void MovePosition(Vector2 direction)
         {
@@ -53,7 +57,10 @@ namespace GameCore.CodeBase.Gameplay.Player
         public void Shoot()
         {
             if (TryGetClosestEnemy(out var enemy))
+            {
+                MoveRotation(enemy.transform.position - _instance.transform.position);
                 enemy.TakeDamage(_weaponData.DamageValue);
+            }
         }
 
         private bool TryGetClosestEnemy(out EnemyController enemy)
@@ -80,5 +87,13 @@ namespace GameCore.CodeBase.Gameplay.Player
 
         private float DistanceTo(Transform targetTransform) =>
             (_instance.transform.position - targetTransform.position).magnitude;
+
+        public void TakeDamage(int value)
+        {
+            Health.Change(value);
+
+            //if (Health.Get() <= 0)
+            //    _enemyFactory.Destroy(_instance);
+        }
     }
 }

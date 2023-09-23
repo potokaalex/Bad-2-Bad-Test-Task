@@ -1,3 +1,4 @@
+using GameCore.CodeBase.Gameplay.Health.Data;
 using GameCore.CodeBase.Gameplay.Inventory;
 using GameCore.CodeBase.Gameplay.Player.Data;
 using UnityEngine;
@@ -23,20 +24,16 @@ namespace GameCore.CodeBase.Gameplay.Player
         {
             var instance = Object.Instantiate(_staticData.ObjectPrefab, spawnPoint.Value, Quaternion.identity);
             var outerCanvas = Object.Instantiate(_staticData.OuterCanvasPrefab, _playerRoot);
-            var model = new PlayerModel(instance, _staticData.MovementData, _staticData.WeaponData);
+            var health = new HealthData(_staticData.HealthData);
+            var model = new PlayerModel(instance, _staticData.MovementData, _staticData.WeaponData, health);
             var inventoryModel = new InventoryModel(_staticData.InventorySize);
             var inventory = new InventoryController(inventoryModel, outerCanvas.InventoryUI);
-            var controller = new PlayerController(model, inventory);
+            var controller = instance.Controller;
+            var ui = new PlayerUI(instance.InnerCanvas, outerCanvas, controller, _staticData.HealthData);
 
             instance.WeaponAreaHandler.Construct(controller);
             instance.ItemCollector.Construct(controller);
-            outerCanvas.InventoryUI.Construct(controller);
-            outerCanvas.ShootButton.Construct(controller);
-
-            foreach (var device in outerCanvas.InputDevices)
-            {
-                device.Construct(controller);
-            }
+            controller.Construct(model, ui, inventory);
 
             instance.transform.SetParent(_playerRoot);
 

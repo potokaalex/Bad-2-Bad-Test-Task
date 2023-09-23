@@ -7,5 +7,7 @@ namespace GameCore.CodeBase.Gameplay.Player.Data
         public Transform Skeleton;
         public PlayerItemCollector ItemCollector;
         public PlayerWeaponAreaHandler WeaponAreaHandler;
+        public PlayerInnerCanvasData InnerCanvas;
+        public PlayerController Controller;
     }
 }

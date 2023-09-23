@@ -1,4 +1,7 @@
 using GameCore.CodeBase.Gameplay.Enemy.Data;
+using GameCore.CodeBase.Gameplay.Enemy.Model;
+using GameCore.CodeBase.Gameplay.Health.Data;
+using GameCore.CodeBase.Gameplay.Item;
 using UnityEngine;
 
 namespace GameCore.CodeBase.Gameplay.Enemy
@@ -7,12 +10,14 @@ namespace GameCore.CodeBase.Gameplay.Enemy
     {
         private const string EnemyRootName = "EnemyRoot";
         private readonly EnemyStaticData _staticData;
+        private readonly ItemFactory _itemFactory;
         private readonly EnemyController[] _enemies;
         private readonly Transform _root;
 
-        public EnemyFactory(EnemyStaticData staticData)
+        public EnemyFactory(EnemyStaticData staticData, ItemFactory itemFactory)
         {
             _staticData = staticData;
+            _itemFactory = itemFactory;
             _root = new GameObject(EnemyRootName).transform;
             _enemies = new EnemyController[staticData.MaxEnemyCount];
         }
@@ -26,10 +31,13 @@ namespace GameCore.CodeBase.Gameplay.Enemy
         private void Create(ISpawnPoint spawnPoint)
         {
             var instance = Object.Instantiate(_staticData.Prefab, spawnPoint.Value, Quaternion.identity);
-            var model = new EnemyModel(instance, this);
+            var health = new HealthData(_staticData.HealthData);
+            var weapon = new EnemyWeaponModel(_staticData.WeaponData);
+            var movement = new EnemyMovementModel(instance);
+            var model = new EnemyModel(instance, this, health, weapon, movement, _itemFactory);
 
-            instance.Controller.Construct(model);
-            instance.TargetHandler.Construct(instance.Controller);
+            instance.UI.Construct(_staticData.HealthData);
+            instance.Controller.Construct(model, instance.UI);
             instance.transform.SetParent(_root);
         }
 

@@ -1,3 +1,4 @@
+using GameCore.CodeBase.Gameplay.Health.Data;
 using UnityEngine;
 
 namespace GameCore.CodeBase.Gameplay.Player.Data
@@ -8,7 +9,8 @@ namespace GameCore.CodeBase.Gameplay.Player.Data
         public PlayerObjectPrefabData ObjectPrefab;
         public PlayerOuterCanvasPrefabData OuterCanvasPrefab;
         public PlayerMovementStaticData MovementData;
-        public PlayerWeaponStaticData WeaponData;
+        public WeaponStaticData WeaponData;
+        public HealthStaticData HealthData;
         public int InventorySize;
     }
 }

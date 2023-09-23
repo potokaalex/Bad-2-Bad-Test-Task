@@ -111,7 +111,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027008854103867745}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 1083877955782305545}
   - component: {fileID: 2552318615720386017}
   - component: {fileID: 4745487181450941423}
+  - component: {fileID: 5484723382238159940}
   m_Layer: 5
   m_Name: InnerCanvas
   m_TagString: Untagged
@@ -313,6 +314,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5484723382238159940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2282603104151895869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96984e39327540a38c616bc48c82a8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthSlider: {fileID: 555537656704935469}
 --- !u!1 &3187123131733745416
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,8 +1075,8 @@ GameObject:
   - component: {fileID: 1620926954494812739}
   - component: {fileID: 84813915104429194}
   - component: {fileID: -5232545315209852384}
-  - component: {fileID: 2291644804975515504}
   - component: {fileID: 2060716462670815362}
+  - component: {fileID: 4587245404880602444}
   - component: {fileID: 4747680096285142610}
   m_Layer: 0
   m_Name: Player
@@ -1114,7 +1128,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6887627181097327318}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.1
+  m_Radius: 0.2
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -1161,18 +1175,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agent: {fileID: 1620926954494812739}
---- !u!114 &2291644804975515504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6887627181097327318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e59efeb01ad146b3b6324d875b4206c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2060716462670815362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1183,6 +1185,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d09846847fa84e949245cddd45cf3251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4587245404880602444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6887627181097327318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cfa7099367a438298aa8966f7ca0b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &4747680096285142610
@@ -1200,6 +1214,8 @@ MonoBehaviour:
   Skeleton: {fileID: 6887627181470101646}
   ItemCollector: {fileID: 2060716462670815362}
   WeaponAreaHandler: {fileID: 3737918944277916864}
+  InnerCanvas: {fileID: 5484723382238159940}
+  Controller: {fileID: 4587245404880602444}
 --- !u!1 &6887627181470101647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,6 +1400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6270124694208108656}
   - component: {fileID: 728698916595759950}
+  - component: {fileID: 555537656704935469}
   m_Layer: 5
   m_Name: HealthSlider
   m_TagString: Untagged
@@ -1464,3 +1481,16 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &555537656704935469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8432160365856798278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15721efacafc44248bbc3aecec55d918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 728698916595759950}

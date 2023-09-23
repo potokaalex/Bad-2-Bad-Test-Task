@@ -1,25 +1,29 @@
-using System;
 using GameCore.CodeBase.Gameplay.Enemy;
+using GameCore.CodeBase.Gameplay.Enemy.Target;
 using GameCore.CodeBase.Gameplay.Inventory;
 using GameCore.CodeBase.Gameplay.Item.Data;
 using UnityEngine;
 
 namespace GameCore.CodeBase.Gameplay.Player
 {
-    public class PlayerController
+    public class PlayerController : MonoBehaviour, IEnemyTarget
     {
-        private readonly PlayerModel _model;
-        private readonly InventoryController _inventory;
+        private PlayerModel _model;
+        private InventoryController _inventory;
+        private PlayerUI _ui;
 
-        public PlayerController(PlayerModel model, InventoryController inventoryController)
+        public void Construct(PlayerModel model, PlayerUI ui, InventoryController inventoryController)
         {
             _model = model;
             _inventory = inventoryController;
+            _ui = ui;
         }
 
         public InventoryController Inventory => _inventory;
 
         public GameObject GameObject => _model.GameObject;
+
+        public Vector3 Position => _model.GameObject.transform.position;
 
         public void Move(Vector2 direction) => _model.MovePosition(direction);
 
@@ -33,6 +37,12 @@ namespace GameCore.CodeBase.Gameplay.Player
         {
             if (_inventory.TryRemoveItem(ItemsType.Ammunition, 1))
                 _model.Shoot();
+        }
+
+        public void TakeDamage(int value)
+        {
+            _model.TakeDamage(value);
+            _ui.SetHealth(_model.Health.Get());
         }
     }
 }

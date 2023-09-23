@@ -23,17 +23,19 @@ namespace GameCore.CodeBase.Gameplay.Item
             return data;
         }
 
-        public void CreateGameObjectRandom(ISpawnPoint spawnPoint, int count)
+        public void CreateGameObjectRandom(Vector3 position)
         {
             var type = (ItemsType)Random.Range(0, ItemsStaticData.Count);
-            var data = CreateData(type, count);
+            var data = CreateData(type, 0);
 
-            CreateGameObject(spawnPoint, data);
+            data.CurrentCount = Random.Range(0, data.Static.MaxCount);
+
+            CreateGameObject(position, data);
         }
 
-        public void CreateGameObject(ISpawnPoint spawnPoint, ItemData data)
+        public void CreateGameObject(Vector3 position, ItemData data)
         {
-            var instance = Object.Instantiate(_staticData.Prefab, spawnPoint.Value, Quaternion.identity);
+            var instance = Object.Instantiate(_staticData.Prefab, position, Quaternion.identity);
 
             instance.CollisionHandler.Construct(this, data, instance);
             instance.SpriteRenderer.sprite = data.Static.Icon;

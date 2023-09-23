@@ -1,3 +1,4 @@
+using GameCore.CodeBase.Gameplay.Health.Data;
 using UnityEngine;
 
 namespace GameCore.CodeBase.Gameplay.Enemy.Data
@@ -7,5 +8,7 @@ namespace GameCore.CodeBase.Gameplay.Enemy.Data
     {
         public EnemyPrefabData Prefab;
         public int MaxEnemyCount;
+        public HealthStaticData HealthData;
+        public WeaponStaticData WeaponData;
     }
 }
