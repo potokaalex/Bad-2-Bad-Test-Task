@@ -26,11 +26,13 @@ namespace GameCore.CodeBase.Gameplay.Enemy
         private void Create(ISpawnPoint spawnPoint)
         {
             var instance = Object.Instantiate(_staticData.Prefab, spawnPoint.Value, Quaternion.identity);
-            var model = new EnemyModel(instance);
-            var controller = new EnemyController(model);
+            var model = new EnemyModel(instance, this);
 
+            instance.Controller.Construct(model);
+            instance.TargetHandler.Construct(instance.Controller);
             instance.transform.SetParent(_root);
-            instance.TargetHandler.Construct(controller);
         }
+
+        public void Destroy(EnemyPrefabData instance) => Object.Destroy(instance.gameObject);
     }
 }

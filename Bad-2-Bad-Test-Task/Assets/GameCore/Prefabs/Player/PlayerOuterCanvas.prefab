@@ -582,6 +582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryUI: {fileID: 7932527938062262516}
+  ShootButton: {fileID: 9095844192845260076}
   InputDevices:
   - {fileID: 1322082613099836778}
   - {fileID: 1164417508885139335}
@@ -597,6 +598,7 @@ GameObject:
   - component: {fileID: 5719372125922531164}
   - component: {fileID: 5719372125922531165}
   - component: {fileID: 5719372125922531106}
+  - component: {fileID: 9095844192845260076}
   m_Layer: 5
   m_Name: ShootButton
   m_TagString: Untagged
@@ -707,6 +709,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9095844192845260076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5719372125922531105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e77a00f5c9b246a6af6e76317905cc24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectableButton: {fileID: 5719372125922531106}
 --- !u!1 &5719372126009708422
 GameObject:
   m_ObjectHideFlags: 0

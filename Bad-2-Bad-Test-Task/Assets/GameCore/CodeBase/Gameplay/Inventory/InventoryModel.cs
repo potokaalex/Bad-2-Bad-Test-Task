@@ -1,3 +1,4 @@
+using System;
 using GameCore.CodeBase.Gameplay.Item.Data;
 
 namespace GameCore.CodeBase.Gameplay.Inventory
@@ -12,7 +13,7 @@ namespace GameCore.CodeBase.Gameplay.Inventory
         {
             if (TryGetFreeCell(data.Type, out var freeItem))
             {
-                var freeSpace = freeItem.Static.MaxCountInStack - freeItem.CurrentCount;
+                var freeSpace = freeItem.Static.MaxCount - freeItem.CurrentCount;
 
                 if (freeSpace < data.CurrentCount)
                 {
@@ -27,7 +28,33 @@ namespace GameCore.CodeBase.Gameplay.Inventory
                 _items[index] = data;
         }
 
-        public void RemoveItem(int cellIndex) => _items[cellIndex] = default;
+        public void RemoveItem(int cellIndex) => _items[cellIndex] = null;
+
+        public bool TryRemoveItem(ItemsType type, int count)
+        {
+            for (var i = 0; i < _items.Length; i++)
+            {
+                if (_items[i] == null || _items[i].Type != type)
+                    continue;
+
+                if (_items[i].CurrentCount > count)
+                {
+                    _items[i].CurrentCount -= count;
+                    return true;
+                }
+
+                if (_items[i].CurrentCount == count)
+                {
+                    RemoveItem(i);
+                    return true;
+                }
+                
+                count -= _items[i].Static.MaxCount - _items[i].CurrentCount;
+                RemoveItem(i);
+            }
+
+            return false;
+        }
 
         public ItemData[] GetItems() => _items;
 
@@ -41,7 +68,7 @@ namespace GameCore.CodeBase.Gameplay.Inventory
                 if (item.Type != type)
                     continue;
 
-                if (item.CurrentCount >= item.Static.MaxCountInStack)
+                if (item.CurrentCount >= item.Static.MaxCount)
                     continue;
 
                 data = item;

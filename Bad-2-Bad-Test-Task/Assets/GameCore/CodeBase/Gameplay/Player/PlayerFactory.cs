@@ -21,15 +21,17 @@ namespace GameCore.CodeBase.Gameplay.Player
 
         public void CreatePlayer(SpawnPoint spawnPoint)
         {
-            var instance = Object.Instantiate(_staticData.ControllerPrefab, spawnPoint.Value, Quaternion.identity);
+            var instance = Object.Instantiate(_staticData.ObjectPrefab, spawnPoint.Value, Quaternion.identity);
             var outerCanvas = Object.Instantiate(_staticData.OuterCanvasPrefab, _playerRoot);
-            var model = new PlayerModel(instance, _staticData.MovementData);
+            var model = new PlayerModel(instance, _staticData.MovementData, _staticData.WeaponData);
             var inventoryModel = new InventoryModel(_staticData.InventorySize);
             var inventory = new InventoryController(inventoryModel, outerCanvas.InventoryUI);
             var controller = new PlayerController(model, inventory);
 
+            instance.WeaponAreaHandler.Construct(controller);
             instance.ItemCollector.Construct(controller);
             outerCanvas.InventoryUI.Construct(controller);
+            outerCanvas.ShootButton.Construct(controller);
 
             foreach (var device in outerCanvas.InputDevices)
             {

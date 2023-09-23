@@ -24,5 +24,13 @@ namespace GameCore.CodeBase.Gameplay.Inventory
             _model.RemoveItem(cellIndex);
             _ui.UpdateItems(_model.GetItems());
         }
+
+        public bool TryRemoveItem(ItemsType type, int count)
+        {
+            var result = _model.TryRemoveItem(type, count);
+            _ui.UpdateItems(_model.GetItems());
+            
+            return result;
+        }
     }
 }

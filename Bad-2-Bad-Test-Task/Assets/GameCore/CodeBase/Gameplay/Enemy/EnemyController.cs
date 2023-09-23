@@ -1,13 +1,16 @@
 using GameCore.CodeBase.Gameplay.Enemy.Target;
+using UnityEngine;
 
 namespace GameCore.CodeBase.Gameplay.Enemy
 {
-    public class EnemyController
+    public class EnemyController : MonoBehaviour
     {
-        private readonly EnemyModel _model;
+        private EnemyModel _model;
 
-        public EnemyController(EnemyModel model) => _model = model;
+        public void Construct(EnemyModel model) => _model = model;
 
         public void Follow(EnemyTarget target) => _model.Follow(target);
+
+        public void TakeDamage(int value) => _model.TakeDamage(value);
     }
 }

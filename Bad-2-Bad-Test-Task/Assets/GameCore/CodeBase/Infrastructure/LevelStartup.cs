@@ -1,5 +1,6 @@
 using GameCore.CodeBase.Gameplay;
 using GameCore.CodeBase.Gameplay.Camera;
+using GameCore.CodeBase.Gameplay.Enemy;
 using GameCore.CodeBase.Gameplay.Item;
 using GameCore.CodeBase.Gameplay.Item.Data;
 using GameCore.CodeBase.Gameplay.Player;
@@ -16,22 +17,22 @@ namespace GameCore.CodeBase.Infrastructure
         private PlayerFactory _playerFactory;
         private CameraFactory _cameraFactory;
         private ItemFactory _itemFactory;
+        private EnemyFactory _enemyFactory;
 
         [Inject]
-        private void Constructor(PlayerFactory playerFactory, CameraFactory cameraFactory, ItemFactory itemFactory)
+        private void Constructor(PlayerFactory playerFactory, CameraFactory cameraFactory, ItemFactory itemFactory,EnemyFactory enemyFactory)
         {
             _playerFactory = playerFactory;
             _cameraFactory = cameraFactory;
             _itemFactory = itemFactory;
+            _enemyFactory = enemyFactory;
         }
 
         private void Start()
         {
             _playerFactory.CreatePlayer(PlayerSpawnPoint);
             _cameraFactory.Create(PlayerSpawnPoint, _playerFactory.CurrentPlayer);
-
-            var item = _itemFactory.CreateData(ItemsType.ZombieHead, 1);
-            _playerFactory.CurrentPlayer.Inventory.AddItem(item);
+            _enemyFactory.Create(EnemySpawnPoints);
         }
     }
 }

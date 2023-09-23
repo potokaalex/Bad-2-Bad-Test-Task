@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using GameCore.CodeBase.Gameplay.Enemy;
 using GameCore.CodeBase.Gameplay.Player.Data;
 using UnityEngine;
 
@@ -5,13 +7,17 @@ namespace GameCore.CodeBase.Gameplay.Player
 {
     public class PlayerModel
     {
-        private readonly PlayerControllerPrefabData _instance;
+        private readonly PlayerObjectPrefabData _instance;
         private readonly PlayerMovementStaticData _movementData;
+        private readonly PlayerWeaponStaticData _weaponData;
+        private readonly List<EnemyController> _selectedEnemies = new();
 
-        public PlayerModel(PlayerControllerPrefabData instance, PlayerMovementStaticData movementData)
+        public PlayerModel(PlayerObjectPrefabData instance, PlayerMovementStaticData movementData,
+            PlayerWeaponStaticData weaponData)
         {
             _instance = instance;
             _movementData = movementData;
+            _weaponData = weaponData;
         }
 
         public GameObject GameObject => _instance.gameObject;
@@ -35,5 +41,44 @@ namespace GameCore.CodeBase.Gameplay.Player
             if (xScale != oldScale.x)
                 _instance.Skeleton.localScale = new Vector3(xScale, oldScale.y, oldScale.z);
         }
+
+        public void SelectEnemy(EnemyController enemy)
+        {
+            if (!_selectedEnemies.Contains(enemy))
+                _selectedEnemies.Add(enemy);
+        }
+
+        public void DeselectEnemy(EnemyController enemy) => _selectedEnemies.Remove(enemy);
+
+        public void Shoot()
+        {
+            if (TryGetClosestEnemy(out var enemy))
+                enemy.TakeDamage(_weaponData.DamageValue);
+        }
+
+        private bool TryGetClosestEnemy(out EnemyController enemy)
+        {
+            if (_selectedEnemies.Count == 0)
+            {
+                enemy = null;
+                return false;
+            }
+
+            enemy = _selectedEnemies[0];
+
+            for (var i = 0; i < _selectedEnemies.Count; i++)
+            {
+                var closestEnemyDistance = DistanceTo(enemy.transform);
+                var currentEnemyDistance = DistanceTo(_selectedEnemies[i].transform);
+
+                if (currentEnemyDistance < closestEnemyDistance)
+                    enemy = _selectedEnemies[i];
+            }
+
+            return true;
+        }
+
+        private float DistanceTo(Transform targetTransform) =>
+            (_instance.transform.position - targetTransform.position).magnitude;
     }
 }

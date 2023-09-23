@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8c4cd8cd3947de94a8b8d820cc6ab8, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  ControllerPrefab: {fileID: 4747680096285142610, guid: f58f243b6af6d9b4684ce8c75f90ccd8, type: 3}
+  ObjectPrefab: {fileID: 4747680096285142610, guid: f58f243b6af6d9b4684ce8c75f90ccd8, type: 3}
   OuterCanvasPrefab: {fileID: 5787470077962048976, guid: 4c4c5eb40121d4e489c7db177de43425, type: 3}
   MovementData:
     PositionVelocity: 7
+  WeaponData:
+    DamageValue: -1
   InventorySize: 5
-  AdditionUIElementPrefabs:
-  - {fileID: 5714727552275797695, guid: d365918bec21d5e43aed779fd203aa46, type: 3}

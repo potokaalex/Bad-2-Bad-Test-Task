@@ -7,6 +7,6 @@ namespace GameCore.CodeBase.Gameplay.Item.Data
     public class ItemStaticData
     {
         public Sprite Icon;
-        public int MaxCountInStack;
+        public int MaxCount;
     }
 }
