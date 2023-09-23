@@ -4,6 +4,6 @@ namespace GameCore.CodeBase.Gameplay.Item
 {
     public interface IItemCollector
     {
-        public void Collect(ItemData data);
+        public void CollectItem(ItemData data);
     }
 }

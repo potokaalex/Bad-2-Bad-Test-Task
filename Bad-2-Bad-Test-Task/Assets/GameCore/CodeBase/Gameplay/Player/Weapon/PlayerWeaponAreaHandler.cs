@@ -1,13 +1,11 @@
 using GameCore.CodeBase.Gameplay.Enemy;
 using UnityEngine;
 
-namespace GameCore.CodeBase.Gameplay.Player
+namespace GameCore.CodeBase.Gameplay.Player.Weapon
 {
     public class PlayerWeaponAreaHandler : MonoBehaviour
     {
-        private PlayerController _controller;
-
-        public void Construct(PlayerController controller) => _controller = controller;
+        [SerializeField] private PlayerController _controller;
 
         private void OnTriggerStay2D(Collider2D other)
         {

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace GameCore.CodeBase.Gameplay.Item.Data
+namespace GameCore.CodeBase.Gameplay.Item.Data.Static
 {
     [Serializable]
     public class ItemStaticData

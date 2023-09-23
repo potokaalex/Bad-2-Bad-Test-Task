@@ -2,7 +2,7 @@ using GameCore.CodeBase.Gameplay.Inventory;
 using GameCore.CodeBase.Gameplay.Item.Data;
 using UnityEngine;
 
-namespace GameCore.CodeBase.Gameplay.Player.InventoryUI
+namespace GameCore.CodeBase.Gameplay.Player.Inventory
 {
     public class PlayerInventoryUI : MonoBehaviour, IInventoryUI
     {

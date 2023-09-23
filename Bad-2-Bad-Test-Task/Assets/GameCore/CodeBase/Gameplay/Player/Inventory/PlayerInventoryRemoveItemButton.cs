@@ -1,6 +1,6 @@
 using GameCore.CodeBase.Utilities.UI;
 
-namespace GameCore.CodeBase.Gameplay.Player.InventoryUI
+namespace GameCore.CodeBase.Gameplay.Player.Inventory
 {
     public class PlayerInventoryRemoveItemButton : ButtonBase
     {

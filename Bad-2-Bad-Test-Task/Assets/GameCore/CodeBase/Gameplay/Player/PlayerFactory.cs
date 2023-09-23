@@ -1,6 +1,9 @@
 using GameCore.CodeBase.Gameplay.Health.Data;
 using GameCore.CodeBase.Gameplay.Inventory;
+using GameCore.CodeBase.Gameplay.Inventory.Model;
 using GameCore.CodeBase.Gameplay.Player.Data;
+using GameCore.CodeBase.Gameplay.Player.Data.UI;
+using GameCore.CodeBase.Gameplay.Player.Model;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -10,7 +13,7 @@ namespace GameCore.CodeBase.Gameplay.Player
     {
         private const string PlayerRootName = "PlayerRoot";
         private readonly PlayerStaticData _staticData;
-        private Transform _playerRoot;
+        private readonly Transform _playerRoot;
 
         public PlayerFactory(PlayerStaticData staticData)
         {
@@ -20,24 +23,43 @@ namespace GameCore.CodeBase.Gameplay.Player
 
         public PlayerController CurrentPlayer { get; private set; }
 
-        public void CreatePlayer(SpawnPoint spawnPoint)
+        public void CreatePlayer(Vector3 position)
         {
-            var instance = Object.Instantiate(_staticData.ObjectPrefab, spawnPoint.Value, Quaternion.identity);
-            var outerCanvas = Object.Instantiate(_staticData.OuterCanvasPrefab, _playerRoot);
-            var health = new HealthData(_staticData.HealthData);
-            var model = new PlayerModel(instance, _staticData.MovementData, _staticData.WeaponData, health);
-            var inventoryModel = new InventoryModel(_staticData.InventorySize);
-            var inventory = new InventoryController(inventoryModel, outerCanvas.InventoryUI);
+            var instance = CreateGameObject(position);
+            var outerCanvas = CreateOuterCanvas();
+            var model = CreateModel(instance, outerCanvas);
             var controller = instance.Controller;
             var ui = new PlayerUI(instance.InnerCanvas, outerCanvas, controller, _staticData.HealthData);
 
-            instance.WeaponAreaHandler.Construct(controller);
-            instance.ItemCollector.Construct(controller);
-            controller.Construct(model, ui, inventory);
-
-            instance.transform.SetParent(_playerRoot);
+            instance.Controller.Construct(model, ui);
 
             CurrentPlayer = controller;
+        }
+
+        private PlayerObjectPrefabData CreateGameObject(Vector3 position)
+        {
+            var instance = Object.Instantiate(_staticData.ObjectPrefab, position, Quaternion.identity);
+            instance.transform.SetParent(_playerRoot);
+            return instance;
+        }
+
+        private PlayerOuterCanvasPrefabData CreateOuterCanvas() =>
+            Object.Instantiate(_staticData.OuterCanvasPrefab, _playerRoot);
+
+        private InventoryController CreateInventory(IInventoryUI ui)
+        {
+            var model = new InventoryModel(_staticData.InventorySize);
+            return new InventoryController(model, ui);
+        }
+
+        private PlayerModel CreateModel(PlayerObjectPrefabData instance,
+            PlayerOuterCanvasPrefabData outerCanvas)
+        {
+            var inventory = CreateInventory(outerCanvas.InventoryUI);
+            var movement = new PlayerMovementModel(instance, _staticData.MovementData);
+            var weapon = new PlayerWeaponModel(_staticData.WeaponData, instance, inventory);
+            var health = new HealthData(_staticData.HealthData);
+            return new PlayerModel(health, movement, weapon, inventory);
         }
     }
 }

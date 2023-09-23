@@ -1,4 +1,5 @@
 using GameCore.CodeBase.Gameplay.Enemy.Target;
+using GameCore.CodeBase.Gameplay.Weapon;
 
 namespace GameCore.CodeBase.Gameplay.Enemy.Model
 {
@@ -22,15 +23,17 @@ namespace GameCore.CodeBase.Gameplay.Enemy.Model
                 return;
 
             _currentTarget.TakeDamage(_weaponStaticData.DamageValue);
-            _timeToAttack = _weaponStaticData.AttackRateSeconds;
+            ResetTimeToAttack();
         }
 
         public void SetTargetToAttack(IEnemyTarget target)
         {
             _currentTarget = target;
-            _timeToAttack = 0;
+            ResetTimeToAttack();
         }
 
         public void RemoveTargetToAttack() => _currentTarget = null;
+
+        private void ResetTimeToAttack() => _timeToAttack = _weaponStaticData.AttackRateSeconds;
     }
 }

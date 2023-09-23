@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameCore.CodeBase.Gameplay.Item.Data
+namespace GameCore.CodeBase.Gameplay.Item.Data.Static
 {
     [CreateAssetMenu(menuName = "Configurations/Items", fileName = "ItemsConfig", order = 0)]
     public class ItemsStaticData : ScriptableObject

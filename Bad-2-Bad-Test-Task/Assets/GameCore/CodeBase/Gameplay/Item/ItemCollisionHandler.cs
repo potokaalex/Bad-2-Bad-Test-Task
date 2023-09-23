@@ -1,4 +1,5 @@
 using GameCore.CodeBase.Gameplay.Item.Data;
+using GameCore.CodeBase.Gameplay.Item.Data.Static;
 using UnityEngine;
 
 namespace GameCore.CodeBase.Gameplay.Item
@@ -21,7 +22,7 @@ namespace GameCore.CodeBase.Gameplay.Item
             if (!other.TryGetComponent<IItemCollector>(out var collector))
                 return;
 
-            collector.Collect(_data);
+            collector.CollectItem(_data);
             _itemFactory.Destroy(_instance);
         }
     }

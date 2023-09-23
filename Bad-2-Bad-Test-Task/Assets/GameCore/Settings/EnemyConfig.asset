@@ -18,5 +18,5 @@ MonoBehaviour:
     MaxCount: 3
     InitialCount: 3
   WeaponData:
-    AttackRateSeconds: 2
+    AttackRateSeconds: 1
     DamageValue: -1

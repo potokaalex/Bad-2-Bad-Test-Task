@@ -1,3 +1,4 @@
+using GameCore.CodeBase.Gameplay.Inventory.Model;
 using GameCore.CodeBase.Gameplay.Item.Data;
 
 namespace GameCore.CodeBase.Gameplay.Inventory
@@ -29,7 +30,7 @@ namespace GameCore.CodeBase.Gameplay.Inventory
         {
             var result = _model.TryRemoveItem(type, count);
             _ui.UpdateItems(_model.GetItems());
-            
+
             return result;
         }
     }

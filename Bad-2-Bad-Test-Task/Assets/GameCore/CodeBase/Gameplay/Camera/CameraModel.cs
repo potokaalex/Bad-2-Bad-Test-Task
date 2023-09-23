@@ -21,7 +21,7 @@ namespace GameCore.CodeBase.Gameplay.Camera
         public void FollowPlayer()
         {
             var cameraPosition = _instance.transform.position;
-            var playerPosition = _playerController.GameObject.transform.position;
+            var playerPosition = _playerController.transform.position;
             var targetPosition = playerPosition + Vector3.forward * _movementData.Height;
             var interpolation = Time.fixedDeltaTime * _movementData.Smoothing;
             var newPosition = Vector3.Lerp(cameraPosition, targetPosition, interpolation);

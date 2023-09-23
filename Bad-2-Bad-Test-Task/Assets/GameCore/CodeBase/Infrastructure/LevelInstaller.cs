@@ -4,6 +4,7 @@ using GameCore.CodeBase.Gameplay.Enemy;
 using GameCore.CodeBase.Gameplay.Enemy.Data;
 using GameCore.CodeBase.Gameplay.Item;
 using GameCore.CodeBase.Gameplay.Item.Data;
+using GameCore.CodeBase.Gameplay.Item.Data.Static;
 using GameCore.CodeBase.Gameplay.Player;
 using GameCore.CodeBase.Gameplay.Player.Data;
 using UnityEngine;

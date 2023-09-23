@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GameCore.CodeBase.Gameplay.Player.InventoryUI
+namespace GameCore.CodeBase.Gameplay.Player.Inventory
 {
     public class PlayerInventoryCell : ButtonBase
     {
@@ -31,7 +31,7 @@ namespace GameCore.CodeBase.Gameplay.Player.InventoryUI
             if (item.CurrentCount > 1)
                 _itemCount.text = item.CurrentCount.ToString();
 
-            _itemIcon.sprite = item.Static.Icon;
+            _itemIcon.sprite = item.Icon;
             _itemIcon.enabled = true;
         }
 

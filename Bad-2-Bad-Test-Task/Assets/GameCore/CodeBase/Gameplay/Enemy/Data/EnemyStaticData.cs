@@ -1,4 +1,5 @@
 using GameCore.CodeBase.Gameplay.Health.Data;
+using GameCore.CodeBase.Gameplay.Weapon;
 using UnityEngine;
 
 namespace GameCore.CodeBase.Gameplay.Enemy.Data

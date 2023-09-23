@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace GameCore.CodeBase.Gameplay
+namespace GameCore.CodeBase.Utilities.NavMesh
 {
     public class NavMeshAgentCleaner : MonoBehaviour
     {

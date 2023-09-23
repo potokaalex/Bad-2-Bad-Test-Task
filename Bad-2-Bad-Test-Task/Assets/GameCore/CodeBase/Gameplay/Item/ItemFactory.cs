@@ -1,6 +1,7 @@
 using System;
 using GameCore.CodeBase.Gameplay.Inventory;
 using GameCore.CodeBase.Gameplay.Item.Data;
+using GameCore.CodeBase.Gameplay.Item.Data.Static;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
@@ -15,12 +16,15 @@ namespace GameCore.CodeBase.Gameplay.Item
 
         public ItemData CreateData(ItemsType type, int count)
         {
-            var data = CreateRawData(type);
+            var staticData = GetStaticData(type);
 
-            data.Type = type;
-            data.CurrentCount = count;
-
-            return data;
+            return new ItemData
+            {
+                Icon = staticData.Icon,
+                Type = type,
+                MaxCount = staticData.MaxCount,
+                CurrentCount = count
+            };
         }
 
         public void CreateGameObjectRandom(Vector3 position)
@@ -28,7 +32,7 @@ namespace GameCore.CodeBase.Gameplay.Item
             var type = (ItemsType)Random.Range(0, ItemsStaticData.Count);
             var data = CreateData(type, 0);
 
-            data.CurrentCount = Random.Range(0, data.Static.MaxCount);
+            data.CurrentCount = Random.Range(1, data.MaxCount);
 
             CreateGameObject(position, data);
         }
@@ -38,18 +42,18 @@ namespace GameCore.CodeBase.Gameplay.Item
             var instance = Object.Instantiate(_staticData.Prefab, position, Quaternion.identity);
 
             instance.CollisionHandler.Construct(this, data, instance);
-            instance.SpriteRenderer.sprite = data.Static.Icon;
+            instance.SpriteRenderer.sprite = data.Icon;
         }
 
         public void Destroy(ItemPrefabData prefabInstance) => Object.Destroy(prefabInstance.gameObject);
 
-        private ItemData CreateRawData(ItemsType type)
+        private ItemStaticData GetStaticData(ItemsType type)
         {
             return type switch
             {
-                ItemsType.Ammunition => new ItemData { Static = _staticData.Ammunition },
-                ItemsType.ZombieHead => new ItemData { Static = _staticData.ZombieHead },
-                ItemsType.ZombieArm => new ItemData { Static = _staticData.ZombieArm },
+                ItemsType.Ammunition => _staticData.Ammunition,
+                ItemsType.ZombieHead => _staticData.ZombieHead,
+                ItemsType.ZombieArm => _staticData.ZombieArm,
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
         }

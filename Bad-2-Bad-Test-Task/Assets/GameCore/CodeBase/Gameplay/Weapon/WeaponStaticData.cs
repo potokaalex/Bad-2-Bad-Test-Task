@@ -1,6 +1,6 @@
 using System;
 
-namespace GameCore.CodeBase.Gameplay
+namespace GameCore.CodeBase.Gameplay.Weapon
 {
     [Serializable]
     public class WeaponStaticData
