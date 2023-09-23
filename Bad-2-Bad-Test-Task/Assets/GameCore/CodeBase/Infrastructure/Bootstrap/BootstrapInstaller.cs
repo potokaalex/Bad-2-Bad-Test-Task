@@ -1,0 +1,35 @@
+﻿using GameCore.CodeBase.Infrastructure.Services.SceneLoader;
+using GameCore.CodeBase.Infrastructure.Services.StateMachine;
+using GameCore.CodeBase.Infrastructure.Services.StateMachine.Implementations;
+using UnityEngine;
+using Zenject;
+
+namespace GameCore.CodeBase.Infrastructure.Bootstrap
+{
+    public class BootstrapInstaller : MonoInstaller
+    {
+        [SerializeField] private SceneLoaderScreenPrefab _sceneLoaderScreenPrefab;
+        [SerializeField] private ScenesStaticData _scenesStaticData;
+
+        public override void InstallBindings()
+        {
+            BindStateMachine();
+            BindSceneLoader();
+
+            Container.Bind<ScenesStaticData>().FromInstance(_scenesStaticData).AsSingle();
+        }
+
+        private void BindSceneLoader()
+        {
+            Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
+            Container.Bind<ISceneLoaderScreen>().To<SceneLoaderScreenPrefab>()
+                .FromComponentInNewPrefab(_sceneLoaderScreenPrefab).AsSingle();
+        }
+
+        private void BindStateMachine()
+        {
+            Container.Bind<IStateFactory>().To<StateFactory>().AsSingle();
+            Container.Bind<IStateMachine>().To<StateMachine>().AsSingle();
+        }
+    }
+}
