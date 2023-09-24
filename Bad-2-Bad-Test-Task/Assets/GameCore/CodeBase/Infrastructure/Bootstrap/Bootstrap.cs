@@ -1,5 +1,4 @@
-﻿using GameCore.CodeBase.Infrastructure.Level;
-using GameCore.CodeBase.Infrastructure.Level.States;
+﻿using GameCore.CodeBase.Infrastructure.Level.States;
 using GameCore.CodeBase.Infrastructure.Services.StateMachine;
 using UnityEngine;
 using Zenject;

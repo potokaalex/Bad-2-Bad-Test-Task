@@ -1,5 +1,5 @@
-using GameCore.CodeBase.Gameplay.Inventory;
 using GameCore.CodeBase.Gameplay.Item.Data;
+using GameCore.CodeBase.Gameplay.Item.Inventory;
 using UnityEngine;
 
 namespace GameCore.CodeBase.Gameplay.Player.Inventory

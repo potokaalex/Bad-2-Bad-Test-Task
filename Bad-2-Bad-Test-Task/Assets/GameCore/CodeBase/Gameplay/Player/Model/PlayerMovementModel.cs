@@ -1,4 +1,5 @@
 using GameCore.CodeBase.Gameplay.Player.Data;
+using GameCore.CodeBase.Gameplay.Player.Data.Static;
 using UnityEngine;
 
 namespace GameCore.CodeBase.Gameplay.Player.Model

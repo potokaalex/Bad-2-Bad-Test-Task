@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using GameCore.CodeBase.Gameplay.Enemy;
-using GameCore.CodeBase.Gameplay.Inventory;
 using GameCore.CodeBase.Gameplay.Item.Data;
+using GameCore.CodeBase.Gameplay.Item.Inventory;
 using GameCore.CodeBase.Gameplay.Player.Data;
+using GameCore.CodeBase.Gameplay.Player.Data.Static;
 using GameCore.CodeBase.Gameplay.Weapon;
 using UnityEngine;
 

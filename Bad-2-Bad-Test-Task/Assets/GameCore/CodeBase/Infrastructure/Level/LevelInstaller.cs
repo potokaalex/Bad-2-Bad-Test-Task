@@ -6,6 +6,7 @@ using GameCore.CodeBase.Gameplay.Item;
 using GameCore.CodeBase.Gameplay.Item.Data.Static;
 using GameCore.CodeBase.Gameplay.Player;
 using GameCore.CodeBase.Gameplay.Player.Data;
+using GameCore.CodeBase.Gameplay.Player.Data.Static;
 using GameCore.CodeBase.Infrastructure.Services.SceneLoader;
 using GameCore.CodeBase.Infrastructure.Services.StateMachine;
 using GameCore.CodeBase.Infrastructure.Services.StateMachine.Factory;

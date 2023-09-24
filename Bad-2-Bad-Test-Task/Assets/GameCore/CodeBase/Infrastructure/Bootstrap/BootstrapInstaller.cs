@@ -1,4 +1,6 @@
-﻿using GameCore.CodeBase.Infrastructure.Services.SceneLoader;
+﻿using GameCore.CodeBase.Infrastructure.Data;
+using GameCore.CodeBase.Infrastructure.Services.ProgressSaveLoader;
+using GameCore.CodeBase.Infrastructure.Services.SceneLoader;
 using GameCore.CodeBase.Infrastructure.Services.StateMachine;
 using GameCore.CodeBase.Infrastructure.Services.StateMachine.Factory;
 using UnityEngine;
@@ -17,6 +19,7 @@ namespace GameCore.CodeBase.Infrastructure.Bootstrap
             BindSceneLoader();
 
             Container.Bind<ScenesStaticData>().FromInstance(_scenesStaticData).AsSingle();
+            Container.Bind<IProgressSaveLoader>().To<ProgressSaveLoader>().AsSingle();
         }
 
         private void BindSceneLoader()

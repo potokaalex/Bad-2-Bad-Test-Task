@@ -1,14 +1,18 @@
 using GameCore.CodeBase.Gameplay.Enemy;
 using GameCore.CodeBase.Gameplay.Enemy.Target;
-using GameCore.CodeBase.Gameplay.Inventory;
 using GameCore.CodeBase.Gameplay.Item;
 using GameCore.CodeBase.Gameplay.Item.Data;
+using GameCore.CodeBase.Gameplay.Item.Inventory;
+using GameCore.CodeBase.Gameplay.Player.Data;
 using GameCore.CodeBase.Gameplay.Player.Model;
+using GameCore.CodeBase.Infrastructure.Data;
+using GameCore.CodeBase.Infrastructure.Services.ProgressSaveLoader.Watcher;
 using UnityEngine;
 
 namespace GameCore.CodeBase.Gameplay.Player
 {
-    public class PlayerController : MonoBehaviour, IEnemyTarget, IItemCollector
+    public class PlayerController : MonoBehaviour, IEnemyTarget, IItemCollector,
+        IProgressReader<PlayerProgressData>, IProgressWriter<PlayerProgressData>
     {
         private PlayerModel _model;
         private PlayerUI _ui;
@@ -40,5 +44,9 @@ namespace GameCore.CodeBase.Gameplay.Player
         }
 
         public void CollectItem(ItemData data) => _model.Inventory.AddItem(data);
+
+        public void OnProgressLoad(PlayerProgressData progress) => _model.OnProgressLoad(progress);
+
+        public void OnProgressSave(PlayerProgressData progress) => _model.OnProgressSave(progress);
     }
 }

@@ -17844,8 +17844,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 1146457600}
   _type: 0
-  _count: 39
-  _spawnRateSeconds: 60
+  _count: 10
+  _spawnRateSeconds: 10
 --- !u!114 &1146457600
 MonoBehaviour:
   m_ObjectHideFlags: 0

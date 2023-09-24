@@ -1,3 +1,4 @@
+using GameCore.CodeBase.Infrastructure.Data;
 using GameCore.CodeBase.Infrastructure.Services.SceneLoader;
 using GameCore.CodeBase.Infrastructure.Services.StateMachine;
 using GameCore.CodeBase.Infrastructure.Services.StateMachine.States;

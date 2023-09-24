@@ -1,5 +1,6 @@
 using GameCore.CodeBase.Gameplay.Health.Data;
-using GameCore.CodeBase.Gameplay.Player.Data.UI;
+using GameCore.CodeBase.Gameplay.Player.Data;
+using GameCore.CodeBase.Gameplay.Player.Data.Static;
 
 namespace GameCore.CodeBase.Gameplay.Player
 {

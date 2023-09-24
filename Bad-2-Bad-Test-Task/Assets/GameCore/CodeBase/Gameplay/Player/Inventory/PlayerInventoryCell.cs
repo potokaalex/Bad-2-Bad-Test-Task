@@ -28,9 +28,7 @@ namespace GameCore.CodeBase.Gameplay.Player.Inventory
 
         public void SetItem(ItemData item)
         {
-            if (item.CurrentCount > 1)
-                _itemCount.text = item.CurrentCount.ToString();
-
+            _itemCount.text = item.CurrentCount > 1 ? item.CurrentCount.ToString() : string.Empty;
             _itemIcon.sprite = item.Icon;
             _itemIcon.enabled = true;
         }

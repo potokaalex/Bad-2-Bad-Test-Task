@@ -7,7 +7,7 @@ using Zenject;
 
 namespace GameCore.CodeBase.Infrastructure.Level.States
 {
-    public class LevelGameplayState : StateBase, IEnterState, IExitState
+    public class LevelGameplayState : StateBase, IEnterState
     {
         private IStateMachine _stateMachine;
         private EnemyFactory _enemyFactory;
@@ -28,17 +28,14 @@ namespace GameCore.CodeBase.Infrastructure.Level.States
 
         private void FixedUpdate()
         {
-            if (_enemyFactory.EnemiesCount == 0)
-                _stateMachine.SwitchTo<LevelFinalState>();
-            else if (_playerFactory.CurrentPlayer == null)
+            if (_playerFactory.CurrentPlayer == null)
             {
                 _cameraFactory.CurrentCamera.RemovePlayerToFollow();
                 _stateMachine.SwitchTo<LevelFinalState>();
             }
-        }
 
-        public void Exit()
-        {
+            else if (_enemyFactory.EnemiesCount == 0)
+                _stateMachine.SwitchTo<LevelFinalState>();
         }
     }
 }

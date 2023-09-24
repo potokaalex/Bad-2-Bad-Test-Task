@@ -1,7 +1,6 @@
-using GameCore.CodeBase.Gameplay.Player.Data.UI;
 using UnityEngine;
 
-namespace GameCore.CodeBase.Gameplay.Player.Data
+namespace GameCore.CodeBase.Gameplay.Player.Data.Static
 {
     public class PlayerObjectPrefabData : MonoBehaviour
     {

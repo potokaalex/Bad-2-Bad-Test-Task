@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using GameCore.CodeBase.Gameplay.Item.Data;
 
-namespace GameCore.CodeBase.Gameplay.Inventory.Model
+namespace GameCore.CodeBase.Gameplay.Item.Inventory.Model
 {
     public class InventoryAddItemTool
     {

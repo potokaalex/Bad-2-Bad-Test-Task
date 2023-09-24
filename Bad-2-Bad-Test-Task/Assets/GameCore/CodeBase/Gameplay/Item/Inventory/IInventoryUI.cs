@@ -1,6 +1,6 @@
 using GameCore.CodeBase.Gameplay.Item.Data;
 
-namespace GameCore.CodeBase.Gameplay.Inventory
+namespace GameCore.CodeBase.Gameplay.Item.Inventory
 {
     public interface IInventoryUI
     {

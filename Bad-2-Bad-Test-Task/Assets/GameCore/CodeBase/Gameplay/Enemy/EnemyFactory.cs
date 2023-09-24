@@ -7,6 +7,7 @@ using GameCore.CodeBase.Gameplay.Item;
 using GameCore.CodeBase.Utilities.Scene;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace GameCore.CodeBase.Gameplay.Enemy
 {
@@ -29,8 +30,10 @@ namespace GameCore.CodeBase.Gameplay.Enemy
 
         public void Create(SpawnPoint[] spawnPoints)
         {
+            var mixed = CopyAndMix(spawnPoints);
+
             for (var i = 0; i < _staticData.EnemySpawnCount; i++)
-                _enemies.Add(Create(spawnPoints[i].Value));
+                _enemies.Add(Create(mixed[i].Value));
         }
 
         private EnemyController Create(Vector3 position)
@@ -58,6 +61,19 @@ namespace GameCore.CodeBase.Gameplay.Enemy
             var instance = Object.Instantiate(_staticData.Prefab, position, Quaternion.identity);
             instance.transform.SetParent(_root);
             return instance;
+        }
+
+        private List<SpawnPoint> CopyAndMix(IEnumerable<SpawnPoint> array)
+        {
+            var result = new List<SpawnPoint>(array);
+
+            for (var i = result.Count - 1; i >= 1; i--)
+            {
+                var j = Random.Range(0, i + 1);
+                (result[j], result[i]) = (result[i], result[j]);
+            }
+
+            return result;
         }
     }
 }

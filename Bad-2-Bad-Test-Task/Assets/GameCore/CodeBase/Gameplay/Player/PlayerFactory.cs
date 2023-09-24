@@ -1,9 +1,11 @@
 using GameCore.CodeBase.Gameplay.Health.Data;
-using GameCore.CodeBase.Gameplay.Inventory;
-using GameCore.CodeBase.Gameplay.Inventory.Model;
+using GameCore.CodeBase.Gameplay.Item;
+using GameCore.CodeBase.Gameplay.Item.Inventory;
+using GameCore.CodeBase.Gameplay.Item.Inventory.Model;
 using GameCore.CodeBase.Gameplay.Player.Data;
-using GameCore.CodeBase.Gameplay.Player.Data.UI;
+using GameCore.CodeBase.Gameplay.Player.Data.Static;
 using GameCore.CodeBase.Gameplay.Player.Model;
+using GameCore.CodeBase.Infrastructure.Services.ProgressSaveLoader;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -13,9 +15,17 @@ namespace GameCore.CodeBase.Gameplay.Player
     {
         private const string PlayerRootName = "PlayerRoot";
         private readonly PlayerStaticData _staticData;
+        private readonly IProgressSaveLoader _progressSaveLoader;
+        private readonly ItemFactory _itemFactory;
         private Transform _playerRoot;
 
-        public PlayerFactory(PlayerStaticData staticData) => _staticData = staticData;
+        public PlayerFactory(PlayerStaticData staticData, IProgressSaveLoader progressSaveLoader,
+            ItemFactory itemFactory)
+        {
+            _staticData = staticData;
+            _progressSaveLoader = progressSaveLoader;
+            _itemFactory = itemFactory;
+        }
 
         public PlayerController CurrentPlayer { get; private set; }
 
@@ -30,12 +40,15 @@ namespace GameCore.CodeBase.Gameplay.Player
             var ui = new PlayerUI(instance.InnerCanvas, outerCanvas, controller, _staticData.HealthData);
 
             instance.Controller.Construct(model, ui);
+            _progressSaveLoader.RegisterWatcher(controller);
 
             CurrentPlayer = controller;
         }
 
         public void DestroyPlayer()
         {
+            _progressSaveLoader.Save<PlayerProgressData>();
+            _progressSaveLoader.UnRegisterWatcher(CurrentPlayer);
             Object.Destroy(_playerRoot.gameObject);
             CurrentPlayer = null;
         }
@@ -63,7 +76,7 @@ namespace GameCore.CodeBase.Gameplay.Player
             var movement = new PlayerMovementModel(instance, _staticData.MovementData);
             var weapon = new PlayerWeaponModel(_staticData.WeaponData, instance, inventory);
             var health = new HealthData(_staticData.HealthData);
-            return new PlayerModel(health, movement, weapon, inventory, this);
+            return new PlayerModel(health, movement, weapon, inventory, this, _itemFactory, _staticData);
         }
     }
 }
