@@ -9,13 +9,15 @@ namespace GameCore.CodeBase.Gameplay.Enemy.Model
         private readonly EnemyPrefabData _instance;
         private readonly EnemyFactory _enemyFactory;
         private readonly ItemFactory _itemFactory;
+        private readonly EnemyController _controller;
 
         public EnemyModel(EnemyPrefabData instance, EnemyFactory enemyFactory, HealthData health,
-            EnemyWeaponModel weapon, EnemyMovementModel movement,ItemFactory itemFactory)
+            EnemyWeaponModel weapon, EnemyMovementModel movement, ItemFactory itemFactory, EnemyController controller)
         {
             _instance = instance;
             _enemyFactory = enemyFactory;
             _itemFactory = itemFactory;
+            _controller = controller;
             Health = health;
 
             Weapon = weapon;
@@ -34,7 +36,7 @@ namespace GameCore.CodeBase.Gameplay.Enemy.Model
 
             if (Health.Get() <= 0)
             {
-                _enemyFactory.Destroy(_instance);
+                _enemyFactory.Destroy(_controller);
                 _itemFactory.CreateGameObjectRandom(_instance.transform.position);
             }
         }

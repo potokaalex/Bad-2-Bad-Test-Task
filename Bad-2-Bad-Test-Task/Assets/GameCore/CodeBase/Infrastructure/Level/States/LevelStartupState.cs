@@ -2,21 +2,24 @@ using GameCore.CodeBase.Gameplay.Camera;
 using GameCore.CodeBase.Gameplay.Enemy;
 using GameCore.CodeBase.Gameplay.Player;
 using GameCore.CodeBase.Infrastructure.Services.StateMachine;
+using GameCore.CodeBase.Infrastructure.Services.StateMachine.States;
+using Zenject;
 
 namespace GameCore.CodeBase.Infrastructure.Level.States
 {
-    public class LevelStartupState : IState
+    public class LevelStartupState : StateBase, IEnterState
     {
-        private readonly LevelSceneData _sceneData;
-        private readonly PlayerFactory _playerFactory;
-        private readonly CameraFactory _cameraFactory;
-        private readonly EnemyFactory _enemyFactory;
-        private readonly IStateMachine _stateMachine;
+        private LevelData _levelData;
+        private PlayerFactory _playerFactory;
+        private CameraFactory _cameraFactory;
+        private EnemyFactory _enemyFactory;
+        private IStateMachine _stateMachine;
 
-        private LevelStartupState(LevelSceneData sceneData, PlayerFactory playerFactory, CameraFactory cameraFactory,
+        [Inject]
+        private void Construct(LevelData levelData, PlayerFactory playerFactory, CameraFactory cameraFactory,
             EnemyFactory enemyFactory, IStateMachine stateMachine)
         {
-            _sceneData = sceneData;
+            _levelData = levelData;
             _playerFactory = playerFactory;
             _cameraFactory = cameraFactory;
             _enemyFactory = enemyFactory;
@@ -25,9 +28,9 @@ namespace GameCore.CodeBase.Infrastructure.Level.States
 
         public void Enter()
         {
-            _playerFactory.CreatePlayer(_sceneData.PlayerSpawnPoint.Value);
-            _cameraFactory.Create(_sceneData.PlayerSpawnPoint.Value, _playerFactory.CurrentPlayer);
-            _enemyFactory.Create(_sceneData.EnemySpawnPoints);
+            _playerFactory.CreatePlayer(_levelData.PlayerSpawnPoint.Value);
+            _cameraFactory.Create(_levelData.PlayerSpawnPoint.Value);
+            _enemyFactory.Create(_levelData.EnemySpawnPoints);
             _stateMachine.SwitchTo<LevelGameplayState>();
         }
     }

@@ -17620,7 +17620,7 @@ MonoBehaviour:
   _cameraStaticData: {fileID: 11400000, guid: 52456d877840616428fc712ccff035d6, type: 2}
   _enemyStaticData: {fileID: 11400000, guid: 50663a32abd847a45ab706df8ea2c891, type: 2}
   _itemsStaticData: {fileID: 11400000, guid: 7e62744453cac8a4eb410a632d0b1250, type: 2}
-  _sceneData:
+  _data:
     PlayerSpawnPoint: {fileID: 1196626432}
     EnemySpawnPoints:
     - {fileID: 424009697}
@@ -17630,6 +17630,7 @@ MonoBehaviour:
     - {fileID: 321762361}
     - {fileID: 1300180722}
     - {fileID: 1848068075}
+    FinalUIPrefab: {fileID: 700790976811215763, guid: 13dc04b1a4e240c40b8a304b0e7389f5, type: 3}
 --- !u!114 &801779473
 MonoBehaviour:
   m_ObjectHideFlags: 0

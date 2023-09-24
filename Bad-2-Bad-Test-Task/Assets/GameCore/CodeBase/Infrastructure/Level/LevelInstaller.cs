@@ -8,7 +8,7 @@ using GameCore.CodeBase.Gameplay.Player;
 using GameCore.CodeBase.Gameplay.Player.Data;
 using GameCore.CodeBase.Infrastructure.Services.SceneLoader;
 using GameCore.CodeBase.Infrastructure.Services.StateMachine;
-using GameCore.CodeBase.Infrastructure.Services.StateMachine.Implementations;
+using GameCore.CodeBase.Infrastructure.Services.StateMachine.Factory;
 using UnityEngine;
 using Zenject;
 
@@ -20,7 +20,7 @@ namespace GameCore.CodeBase.Infrastructure.Level
         [SerializeField] private CameraStaticData _cameraStaticData;
         [SerializeField] private EnemyStaticData _enemyStaticData;
         [SerializeField] private ItemsStaticData _itemsStaticData;
-        [SerializeField] private LevelSceneData _sceneData;
+        [SerializeField] private LevelData _data;
 
         public override void InstallBindings()
         {
@@ -31,7 +31,8 @@ namespace GameCore.CodeBase.Infrastructure.Level
             Container.Bind<CameraFactory>().AsSingle();
             Container.Bind<EnemyFactory>().AsSingle();
             Container.Bind<ItemFactory>().AsSingle();
-            Container.Bind<LevelSceneData>().FromInstance(_sceneData).AsSingle();
+            Container.Bind<LevelData>().FromInstance(_data).AsSingle();
+            Container.Bind<LevelFactory>().AsSingle();
         }
 
         private void BindStaticData()

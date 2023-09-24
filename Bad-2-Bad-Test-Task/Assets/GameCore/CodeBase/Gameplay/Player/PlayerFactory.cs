@@ -13,18 +13,16 @@ namespace GameCore.CodeBase.Gameplay.Player
     {
         private const string PlayerRootName = "PlayerRoot";
         private readonly PlayerStaticData _staticData;
-        private readonly Transform _playerRoot;
+        private Transform _playerRoot;
 
-        public PlayerFactory(PlayerStaticData staticData)
-        {
-            _staticData = staticData;
-            _playerRoot = new GameObject(PlayerRootName).transform;
-        }
+        public PlayerFactory(PlayerStaticData staticData) => _staticData = staticData;
 
         public PlayerController CurrentPlayer { get; private set; }
 
         public void CreatePlayer(Vector3 position)
         {
+            _playerRoot = new GameObject(PlayerRootName).transform;
+
             var instance = CreateGameObject(position);
             var outerCanvas = CreateOuterCanvas();
             var model = CreateModel(instance, outerCanvas);
@@ -34,6 +32,12 @@ namespace GameCore.CodeBase.Gameplay.Player
             instance.Controller.Construct(model, ui);
 
             CurrentPlayer = controller;
+        }
+
+        public void DestroyPlayer()
+        {
+            Object.Destroy(_playerRoot.gameObject);
+            CurrentPlayer = null;
         }
 
         private PlayerObjectPrefabData CreateGameObject(Vector3 position)
@@ -59,7 +63,7 @@ namespace GameCore.CodeBase.Gameplay.Player
             var movement = new PlayerMovementModel(instance, _staticData.MovementData);
             var weapon = new PlayerWeaponModel(_staticData.WeaponData, instance, inventory);
             var health = new HealthData(_staticData.HealthData);
-            return new PlayerModel(health, movement, weapon, inventory);
+            return new PlayerModel(health, movement, weapon, inventory, this);
         }
     }
 }

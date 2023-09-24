@@ -8,6 +8,6 @@ namespace GameCore.CodeBase.Gameplay.Camera
 
         public void Construct(CameraController controller) => _controller = controller;
 
-        private void FixedUpdate() => _controller.FollowPlayer();
+        private void FixedUpdate() => _controller.UpdateModel();
     }
 }

@@ -12,10 +12,10 @@ namespace GameCore.CodeBase.Gameplay.Camera
 
         public CameraController CurrentCamera { get; private set; }
 
-        public void Create(Vector3 position, PlayerController playerController)
+        public void Create(Vector3 position)
         {
             var instance = Object.Instantiate(_staticData.CameraPrefab, position, Quaternion.identity);
-            var model = new CameraModel(instance, _staticData.MovementData, playerController);
+            var model = new CameraModel(instance, _staticData.MovementData);
             var controller = new CameraController(model);
 
             instance.Input.Construct(controller);

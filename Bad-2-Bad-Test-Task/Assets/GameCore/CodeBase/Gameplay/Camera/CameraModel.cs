@@ -8,17 +8,25 @@ namespace GameCore.CodeBase.Gameplay.Camera
     {
         private readonly CameraPrefabData _instance;
         private readonly CameraMovementStaticData _movementData;
-        private readonly PlayerController _playerController;
+        private PlayerController _playerController;
 
-        public CameraModel(CameraPrefabData instance, CameraMovementStaticData movementData,
-            PlayerController playerController)
+        public CameraModel(CameraPrefabData instance, CameraMovementStaticData movementData)
         {
             _instance = instance;
             _movementData = movementData;
-            _playerController = playerController;
         }
 
-        public void FollowPlayer()
+        public void SetPlayerToFollow(PlayerController playerController) => _playerController = playerController;
+
+        public void RemovePlayerToFollow() => _playerController = null;
+
+        public void Update()
+        {
+            if (_playerController != null)
+                FollowPlayer();
+        }
+
+        private void FollowPlayer()
         {
             var cameraPosition = _instance.transform.position;
             var playerPosition = _playerController.transform.position;

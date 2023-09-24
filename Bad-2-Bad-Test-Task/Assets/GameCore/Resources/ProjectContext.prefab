@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneLoaderScreenPrefab: {fileID: 1292659689629406324, guid: c27f7e2fa86ceaf42ae819a8abe34c79, type: 3}
-  _sceneStaticData: {fileID: 11400000, guid: 81cc7f3f2f8257240bb49ed30931e176, type: 2}
+  _scenesStaticData: {fileID: 11400000, guid: 81cc7f3f2f8257240bb49ed30931e176, type: 2}
 --- !u!114 &3553811885683585649
 MonoBehaviour:
   m_ObjectHideFlags: 0

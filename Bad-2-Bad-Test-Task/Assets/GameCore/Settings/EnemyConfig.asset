@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyConfig
   m_EditorClassIdentifier: 
   Prefab: {fileID: 2905984367038529967, guid: ea4ee5d6f2c42c9469a21894a048c960, type: 3}
-  MaxEnemyCount: 7
+  EnemySpawnCount: 3
   HealthData:
     MaxCount: 3
     InitialCount: 3

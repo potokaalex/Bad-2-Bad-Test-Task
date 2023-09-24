@@ -8,7 +8,7 @@ namespace GameCore.CodeBase.Gameplay.Enemy.Data
     public class EnemyStaticData : ScriptableObject
     {
         public EnemyPrefabData Prefab;
-        public int MaxEnemyCount;
+        public int EnemySpawnCount;
         public HealthStaticData HealthData;
         public WeaponStaticData WeaponData;
     }

@@ -2,7 +2,7 @@
 
 namespace GameCore.CodeBase.Infrastructure.Services.SceneLoader
 {
-    public class SceneLoaderScreenPrefab : MonoBehaviour, ISceneLoaderScreen
+    public class SceneLoaderScreen : MonoBehaviour, ISceneLoaderScreen
     {
         [SerializeField] private Transform _screen;
 
