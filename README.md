@@ -1,6 +1,8 @@
 # Bad-2-Bad-Test-Task
 This is a test for the junior position.
 
+![0](https://github.com/Kot-Alenya/Bad-2-Bad-Test-Task/assets/98838657/de574562-1577-493c-9050-26a1ee9a0d15)
+
 # Task text
 - Create a tile map.
 - GameUI: Buttons: fire, backpack, remove the item; & Joystick for the player.
